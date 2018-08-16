@@ -1,0 +1,6 @@
+framework module Pods_SocialServiceApp {
+  umbrella header "Pods-SocialServiceApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
