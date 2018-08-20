@@ -8,6 +8,9 @@
 
 import UIKit
 import FBSDKLoginKit
+import FBSDKShareKit
+import Firebase
+import FirebaseAuth
 
 class LoginController: UIViewController, UITextFieldDelegate {
     
@@ -38,12 +41,26 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     //FaceBookLoginButton
 @IBAction func LoginWithFacebookButton(_ sender: UIButton) {
-
+    
     FBSDKLoginManager().logIn(withReadPermissions:["email", "public_profile"], from: self) { (result, err) in
         if err != nil{
             print(err!)
             return
         }
+        
+        //getting the current fb token
+        let accessToken = FBSDKAccessToken.current()
+        guard let accessTokenToString = accessToken?.tokenString else {return}
+        
+        let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenToString)
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            if let error = error {
+               print(error)
+                return
+            }
+            print("Syceeeeeessss")
+        }
+            
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
             print(result!)
         }
