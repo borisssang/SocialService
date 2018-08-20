@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XzF-M7-PGP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xqN-0e-ThM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <!--Location View Controller-->
         <scene sceneID="GsQ-Zh-MO0">
             <objects>
-                <viewController id="26U-9I-EsT" customClass="LocationViewController" customModule="Фандъкова" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="26U-9I-EsT" customClass="LocationViewController" customModule="SocialServiceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="onO-Ch-JVr"/>
                         <viewControllerLayoutGuide type="bottom" id="FNW-Qx-ZeM"/>
@@ -31,7 +31,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="A0q-YO-Jq4">
-                                <rect key="frame" x="0.0" y="53" width="375" height="614"/>
+                                <rect key="frame" x="0.0" y="97" width="375" height="570"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -72,7 +72,7 @@
         <!--Form Table Controller-->
         <scene sceneID="Ggh-KI-wQw">
             <objects>
-                <tableViewController storyboardIdentifier="FormTableController" id="h0R-iS-Lsw" customClass="FormTableController" customModule="Фандъкова" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FormTableController" id="h0R-iS-Lsw" customClass="FormTableController" customModule="SocialServiceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" scrollEnabled="NO" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WBE-Yf-0jy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,7 +128,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.30196078431372547" green="0.80784313725490198" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="148" id="io8-r6-phO" customClass="LocationCell" customModule="Фандъкова" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="148" id="io8-r6-phO" customClass="LocationCell" customModule="SocialServiceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="170" width="375" height="148"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="io8-r6-phO" id="ULS-kq-Qbj">
@@ -204,7 +204,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.30196078430000001" green="0.80784313730000001" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="140" id="IRo-Br-7ff" customClass="DescriptionCell" customModule="Фандъкова" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="140" id="IRo-Br-7ff" customClass="DescriptionCell" customModule="SocialServiceApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="475" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IRo-Br-7ff" id="BXO-CS-haZ">
@@ -269,7 +269,7 @@
         <!--Data Controller-->
         <scene sceneID="ygP-WT-v1s">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="y8j-hF-37X" customClass="DataController" customModule="Фандъкова" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="y8j-hF-37X" customClass="DataController" customModule="SocialServiceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" alpha="0.59999999999999998" contentMode="scaleToFill" id="9Lj-MM-izF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -329,10 +329,10 @@
             </objects>
             <point key="canvasLocation" x="2822" y="215"/>
         </scene>
-        <!--Login Controller-->
+        <!--View Controller-->
         <scene sceneID="YsV-sc-LWN">
             <objects>
-                <viewController id="XzF-M7-PGP" customClass="LoginController" customModule="Фандъкова" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XzF-M7-PGP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o5S-BQ-hPU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,26 +363,18 @@
                                             </attributedString>
                                             <color key="highlightedColor" red="0.25398172281785192" green="0.69415821757667928" blue="0.86714784263959399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="First name" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="FNS-09-a8v">
-                                            <rect key="frame" x="48" y="154" width="278" height="44"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="FNS-09-a8v">
+                                            <rect key="frame" x="48" y="206" width="278" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                                             <textInputTraits key="textInputTraits" textContentType="name"/>
                                         </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Telephone number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMQ-dP-CSJ">
-                                            <rect key="frame" x="48" y="347" width="278" height="44"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="31d-Ni-ty5">
+                                            <rect key="frame" x="104" y="392" width="169" height="39"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
-                                            <textInputTraits key="textInputTraits" textContentType="tel"/>
-                                        </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ok-ud-THO">
-                                            <rect key="frame" x="103" y="424" width="169" height="39"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.25398172279999998" green="0.69415821759999996" blue="0.8671478426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="1" green="0.5345041317" blue="0.29303286160000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal">
                                                 <attributedString key="attributedTitle">
                                                     <fragment content="Login">
@@ -394,58 +386,14 @@
                                                     </fragment>
                                                 </attributedString>
                                             </state>
-                                            <connections>
-                                                <action selector="LoginButton:" destination="XzF-M7-PGP" eventType="touchUpInside" id="hJJ-DF-6OF"/>
-                                            </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="no5-or-2Ml">
-                                            <rect key="frame" x="177" y="477" width="20" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="or">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="20" name="Futura-Medium"/>
-                                                        <font key="NSOriginalFont" size="17" name="Futura-Medium"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="31d-Ni-ty5">
-                                            <rect key="frame" x="103" y="525" width="169" height="39"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="1" green="0.5345041317" blue="0.29303286160000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="Register">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Futura-Medium"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </state>
-                                            <connections>
-                                                <action selector="RegisterButton:" destination="XzF-M7-PGP" eventType="touchUpInside" id="zfp-Rq-FuV"/>
-                                            </connections>
-                                        </button>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Last name" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="orK-DF-Rdb">
-                                            <rect key="frame" x="48" y="216" width="278" height="44"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="orK-DF-Rdb">
+                                            <rect key="frame" x="48" y="290" width="278" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                                             <textInputTraits key="textInputTraits" textContentType="family-name"/>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email address" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="qzu-Zp-z6e">
-                                            <rect key="frame" x="48" y="279" width="278" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
-                                            <textInputTraits key="textInputTraits" textContentType="email"/>
                                         </textField>
                                     </subviews>
                                 </view>
@@ -455,19 +403,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="TLr-A5-ftd"/>
                     </view>
-                    <connections>
-                        <outlet property="emailTextField" destination="qzu-Zp-z6e" id="KH6-9K-pQY"/>
-                        <outlet property="firstNameTextField" destination="FNS-09-a8v" id="iKT-aA-tOF"/>
-                        <outlet property="lastNameTextField" destination="orK-DF-Rdb" id="AtN-Zw-fgg"/>
-                        <outlet property="loginOutlet" destination="5Ok-ud-THO" id="nAX-wN-Jcf"/>
-                        <outlet property="phoneTextField" destination="dMQ-dP-CSJ" id="RkK-ez-QsP"/>
-                        <outlet property="registerOutlet" destination="31d-Ni-ty5" id="Lzq-Og-9N4"/>
-                        <segue destination="3Mr-Ii-69L" kind="presentation" identifier="showForm" animates="NO" id="gOF-Yn-jU6"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="31d-mf-CeP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-591" y="215"/>
+            <point key="canvasLocation" x="-746" y="995"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iFK-cD-emA">
@@ -490,13 +429,169 @@
             </objects>
             <point key="canvasLocation" x="433" y="216"/>
         </scene>
+        <!--Login Controller-->
+        <scene sceneID="DRC-6O-Kuo">
+            <objects>
+                <viewController id="xqN-0e-ThM" customClass="LoginController" customModule="SocialServiceApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Fn-Tn-HG5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="oUC-L8-OL2">
+                                <rect key="frame" x="0.0" y="4" width="375" height="659"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6cb-eA-mhn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="tpr-dy-8nF">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDh-om-vDN">
+                                            <rect key="frame" x="95" y="67" width="184" height="79"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="0.30196078430000001" green="0.80784313730000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Welcome">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="32" name="Futura-Medium"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="highlightedColor" red="0.25398172279999998" green="0.69415821759999996" blue="0.8671478426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Telephone number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nEv-O1-SN3">
+                                            <rect key="frame" x="48" y="347" width="278" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                            <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nke-YN-HEa">
+                                            <rect key="frame" x="177" y="477" width="20" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="or">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="20" name="Futura-Medium"/>
+                                                        <font key="NSOriginalFont" size="17" name="Futura-Medium"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HB5-RV-Wa8" userLabel="Facebook Register">
+                                            <rect key="frame" x="102" y="525" width="171" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.26666666666666666" green="0.41176470588235292" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="Login with Facebook">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="16" name="Futura-Medium"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </state>
+                                            <connections>
+                                                <action selector="LoginWithFacebookButton:" destination="xqN-0e-ThM" eventType="touchUpInside" id="uD3-2P-4fT"/>
+                                            </connections>
+                                        </button>
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vxg-m7-2zV">
+                                            <rect key="frame" x="48" y="216" width="278" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                            <textInputTraits key="textInputTraits" textContentType="family-name"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email address" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-As-lfd">
+                                            <rect key="frame" x="48" y="279" width="278" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                            <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LzF-CV-grn">
+                                            <rect key="frame" x="103" y="424" width="169" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.25398172279999998" green="0.69415821759999996" blue="0.8671478426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="Register">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="18" name="Futura-Medium"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </state>
+                                            <connections>
+                                                <segue destination="3Mr-Ii-69L" kind="show" identifier="showForm" id="JKG-EA-AMh"/>
+                                            </connections>
+                                        </button>
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Name" textAlignment="center" minimumFontSize="22" translatesAutoresizingMaskIntoConstraints="NO" id="mLb-Uk-pIv">
+                                            <rect key="frame" x="48" y="154" width="278" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                            <textInputTraits key="textInputTraits" textContentType="name"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbf-aX-EGo">
+                                            <rect key="frame" x="84" y="572" width="206" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="Already have an account?">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="15" name="Futura-Medium"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </state>
+                                            <connections>
+                                                <segue destination="XzF-M7-PGP" kind="show" id="Ums-op-yZ3"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="chm-D7-DPk"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="XCE-As-lfd" id="ZjR-RS-JPc"/>
+                        <outlet property="facebookRegisterOutlet" destination="HB5-RV-Wa8" id="gLu-1v-DPz"/>
+                        <outlet property="firstNameTextField" destination="mLb-Uk-pIv" id="W6b-JK-bEA"/>
+                        <outlet property="passwordTextField" destination="Vxg-m7-2zV" id="BlM-cu-jrk"/>
+                        <outlet property="phoneTextField" destination="nEv-O1-SN3" id="xzq-wv-t5K"/>
+                        <outlet property="registerOutlet" destination="LzF-CV-grn" id="XXj-Bl-Hkh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T9H-94-f1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-746" y="215"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Image" width="407" height="408"/>
         <image name="wallpaper" width="920" height="920"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PMF-bD-Emx"/>
-        <segue reference="7FC-tN-P00"/>
+        <segue reference="JKG-EA-AMh"/>
     </inferredMetricsTieBreakers>
 </document>
