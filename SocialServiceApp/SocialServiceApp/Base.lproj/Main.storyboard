@@ -47,12 +47,21 @@
                         <viewLayoutGuide key="safeArea" id="jQB-Vu-pv6"/>
                     </view>
                     <navigationItem key="navigationItem" id="2pA-gG-h4H">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="lqY-lh-6H5">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="goBack:" destination="26U-9I-EsT" id="RW0-U8-haM"/>
                             </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dDh-ys-uAO">
+                            <rect key="frame" x="172.5" y="7" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="📌"/>
+                            <connections>
+                                <action selector="backToCurrent:" destination="26U-9I-EsT" eventType="touchUpInside" id="gKJ-FE-x26"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="Confirm" id="kVh-Jx-Kod">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -411,7 +420,7 @@
         <!--Navigation Controller-->
         <scene sceneID="iFK-cD-emA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Mr-Ii-69L" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigation" automaticallyAdjustsScrollViewInsets="NO" id="3Mr-Ii-69L" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NMc-1M-Gra">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

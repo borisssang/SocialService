@@ -16,6 +16,12 @@ PODS:
     - FirebaseAuth (= 5.0.3)
   - Firebase/CoreOnly (5.6.0):
     - FirebaseCore (= 5.1.1)
+  - Firebase/Database (5.6.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (= 5.0.2)
+  - Firebase/Storage (5.6.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (= 3.0.0)
   - FirebaseAuth (5.0.3):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.0)
@@ -24,18 +30,33 @@ PODS:
   - FirebaseAuthInterop (1.0.0)
   - FirebaseCore (5.1.1):
     - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseDatabase (5.0.2):
+    - FirebaseCore (~> 5.0)
+    - leveldb-library (~> 1.18)
+  - FirebaseStorage (3.0.0):
+    - FirebaseCore (~> 5.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - GoogleUtilities/Environment (5.2.2)
   - GoogleUtilities/Logger (5.2.2):
     - GoogleUtilities/Environment
   - GTMSessionFetcher/Core (1.2.0)
+  - JGProgressHUD (2.0.3)
+  - LBTAComponents (1.0.2)
+  - leveldb-library (1.20)
   - PCLBlurEffectAlert (2.1.1)
+  - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - Firebase/Auth
+  - Firebase/Database
+  - Firebase/Storage
+  - JGProgressHUD
+  - LBTAComponents
   - PCLBlurEffectAlert
+  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -47,9 +68,15 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseDatabase
+    - FirebaseStorage
     - GoogleUtilities
     - GTMSessionFetcher
+    - JGProgressHUD
+    - LBTAComponents
+    - leveldb-library
     - PCLBlurEffectAlert
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -60,10 +87,16 @@ SPEC CHECKSUMS:
   FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: cb9ee75e0894def766167c95a4d5a14b1c138269
+  FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
+  FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
   GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  LBTAComponents: c4c8863e0ef6715e378300db148b96a09df656f7
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   PCLBlurEffectAlert: 9671c027e17e9b054ed372fbecded167ea46daf9
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: dbbddfd93b20ea89ba05b43a2418033267426d89
+PODFILE CHECKSUM: dd9159b98a9b7e76f627057aa7e9f1afd070a9fc
 
 COCOAPODS: 1.5.3

@@ -31,6 +31,7 @@ class LocationCell: UITableViewCell, UITextFieldDelegate{
     @IBOutlet weak var buttonConstraint: NSLayoutConstraint!
     var animationHappened = false
     func performButtonAnimation(){
+        guard addressLabel?.text != "" else {return}
         instructionLabel.alpha = 0
         guard  animationHappened == false else {return}
         

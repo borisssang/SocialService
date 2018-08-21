@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052A4770212C2B8B008F4E55 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A476F212C2B8B008F4E55 /* SignInController.swift */; };
 		05B6CBA92125CCC7009CE354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B6CBA72125CCC7009CE354 /* Main.storyboard */; };
 		05B6CBBE2125CDAA009CE354 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6CBB42125CDA8009CE354 /* DataController.swift */; };
 		05B6CBBF2125CDAA009CE354 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6CBB52125CDA8009CE354 /* FormData.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		052A476F212C2B8B008F4E55 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		05B6CB922125CC8A009CE354 /* SocialServiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialServiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B6CBA82125CCC7009CE354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05B6CBB42125CDA8009CE354 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -103,8 +105,8 @@
 		05B6CBCD2125CE06009CE354 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				05B6CBB52125CDA8009CE354 /* FormData.swift */,
 				05B6CBB92125CDA9009CE354 /* UserEntity.swift */,
+				05B6CBB52125CDA8009CE354 /* FormData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				05B6CBBD2125CDA9009CE354 /* LoginController.swift */,
+				052A476F212C2B8B008F4E55 /* SignInController.swift */,
 				05B6CBB62125CDA8009CE354 /* FormTableController.swift */,
 				05B6CBBC2125CDA9009CE354 /* CameraController.swift */,
 				05B6CBBA2125CDA9009CE354 /* LocationViewController.swift */,
@@ -254,7 +257,11 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/PCLBlurEffectAlert/PCLBlurEffectAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -264,7 +271,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PCLBlurEffectAlert.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -288,6 +299,7 @@
 				05B6CBC62125CDAA009CE354 /* CameraController.swift in Sources */,
 				05B6CBCA2125CDB4009CE354 /* AppDelegate.swift in Sources */,
 				05B6CBC02125CDAA009CE354 /* FormTableController.swift in Sources */,
+				052A4770212C2B8B008F4E55 /* SignInController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

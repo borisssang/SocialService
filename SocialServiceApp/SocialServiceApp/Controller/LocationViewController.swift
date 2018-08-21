@@ -41,6 +41,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate,MKMapV
     @IBOutlet weak var mapView: MKMapView!
     let manager = CLLocationManager()
     var userLocation = CLLocation()
+    var coordinate = CLLocationCoordinate2D()
     var anotationSet = false
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
@@ -49,6 +50,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate,MKMapV
         if !anotationSet{
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
             
+            self.coordinate = locValue
             let span = MKCoordinateSpanMake(0.01, 0.01)
             let region = MKCoordinateRegion(center: locValue, span: span)
             mapView.setRegion(region, animated: true)
@@ -110,7 +112,14 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate,MKMapV
     //MARK: Location Protocol
     var delegate: LocationDelegate?
     
+    @IBAction func backToCurrent(_ sender: UIButton) {
+        mapView.centerCoordinate = coordinate
+    }
+    
+    
     @IBAction func sendLocation(_ sender: UIBarButtonItem) {
+    guard (addressField.text != "Loading address..") else {return}
+        
         delegate?.setLocation(location: userLocation, address: addressField.text!)
         delegate?.locationChanged()
         _ = navigationController?.popViewController(animated: true) as? FormTableController

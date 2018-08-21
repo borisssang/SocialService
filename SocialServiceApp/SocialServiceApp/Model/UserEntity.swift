@@ -10,13 +10,13 @@ import Foundation
 
 class UserEntity{
     
-    private var firstName: String?
-    private var password: String?
-    private var userEmail: String?
-    private var userPhone: Int?
+    var name: String?
+    var password: String?
+    var userEmail: String?
+    var userPhone: Int?
     
     init(first: String, pas: String, email: String, phone: Int){
-        firstName = first
+        name = first
         password = pas
         userEmail = email
         userPhone = phone

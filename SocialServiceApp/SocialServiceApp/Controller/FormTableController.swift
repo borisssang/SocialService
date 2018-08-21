@@ -113,7 +113,7 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
         } else if let destinationVC = segue.destination as? DataController {
             guard user != nil && formAddress != nil && formImage != nil && formLocation != nil && formDescription != nil else { showAlert()
                 return}
-            let template = FormData(user: user!, image: formImage!, address: formAddress!, location: formLocation!, category: selectedCategory!, description: formDescription!)
+            let template = FormData(user: user!, image: formImage!, address: formAddress!, location: formLocation!, category: selectedCategory!, description: formDescription!) 
             destinationVC.forms.append(template)
         }
     }
