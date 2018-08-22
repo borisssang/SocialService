@@ -16,6 +16,7 @@ import Firebase
 import FirebaseAuth
 import SwiftyJSON
 import JGProgressHUD
+import FirebaseFirestore
 
 class SignInController: UIViewController, UITextFieldDelegate {
     
@@ -31,7 +32,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
     }
     
     var dataForm: FormData?
-    var facebookUser: UserEntity?
+    var user: UserEntity?
     
     //Outlets
     
@@ -39,6 +40,8 @@ class SignInController: UIViewController, UITextFieldDelegate {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet weak var registerOutlet: UIButton!
     @IBOutlet weak var facebookRegisterOutlet: UIButton!
+    
+    @IBOutlet weak var goBack: UIButton!
     
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
@@ -56,6 +59,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
     
     //FaceBookLoginButton
     @IBAction func LoginWithFacebookButton(_ sender: UIButton) {
+        
         hud.textLabel.text = "Logging in with Facebook..."
         hud.show(in: view, animated: true)
         
@@ -71,15 +75,13 @@ class SignInController: UIViewController, UITextFieldDelegate {
             
             //signing in into FIREBASE
             let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenToString)
-            
-            
-            //            Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
-            //                if let error = error {
-            //                    self.dismissHud(self.hud, text: "Sign up error", detailText: error.localizedDescription, delay: 3)
-            //                    return
-            //                }
-            //                print("Auth successfull")
-            //            }
+            Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+                if let error = error {
+                    self.dismissHud(self.hud, text: "Sign in error", detailText: error.localizedDescription, delay: 3)
+                    return
+                }
+                print("Auth successfull")
+            }
             
             //Fetching the facebook user info
             FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
@@ -88,12 +90,13 @@ class SignInController: UIViewController, UITextFieldDelegate {
                 let name = json["name"].string!
                 let password = json["id"].string!
                 let email = json["email"].string!
-                self.facebookUser = UserEntity(first: name, pas: password, email: email, phone: 0)
                 
                 let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc : UINavigationController = storyboard.instantiateViewController(withIdentifier: "navigation") as! UINavigationController
                 if let formVC = vc.topViewController as? FormTableController{
-                    formVC.user = self.facebookUser
+                    
+                    //KEYCHAIN NEEDED
+                    formVC.user = self.user
                     self.present(vc, animated: true, completion: nil)
                 }
             }
@@ -105,31 +108,39 @@ class SignInController: UIViewController, UITextFieldDelegate {
         if let identifier = segue.identifier, identifier == "showForm" {
             if let navVC = segue.destination as? UINavigationController{
                 if let vc = navVC.topViewController as? FormTableController {
-                    
-                    
-                    
-                    //                    if phoneTextField.text != "" && firstNameTextField.text != "" && passwordTextField.text != "" && emailTextField.text != "" {
-                    //                        let user = UserEntity(first: firstNameTextField.text!, pas: passwordTextField.text!, email: emailTextField.text!, phone: Int(phoneTextField.text!)!)
-                    
-                    
-                    //sign in user
-                    
-                    //                        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, error) in
-                    //                            guard (authResult?.user) != nil else { return }
-                    //                        }
-                    //                        vc.user = user
-                    //                    }
-                    //                    else{
-                    //                        showAlert()
-                    //                    }
+                    if  passwordTextField.text != "" && emailTextField.text != "" {
+                        guard isValidEmail(testStr: emailTextField.text!) else {showAlert(message: "Please enter a valid email address")
+                            return}
+                        Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (result, error) in
+                            if error != nil {
+                                print(error!)
+                            }
+                            else if let user = Auth.auth().currentUser {
+                                //TODO: get uiid + keychain
+                                //search by uiid
+                                //getting data and save it to user then pass it on
+                                //KEYCHAIN
+                                print(user)
+                            }
+                        }
+//                        let user = UserEntity(first: firstNameTextField.text!, pas: passwordTextField.text!, email: emailTextField.text!, phone: Int(phoneTextField.text!)!)
+                    }
                 }
             }
         }
     }
+
+    //email verification
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
     
     //alert if some of the fields are missing
-    func showAlert(){
-        let alert = UIAlertController(title: "Oops", message: "Make sure you have provided all the information required", preferredStyle: UIAlertControllerStyle.alert)
+    func showAlert(message: String){
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:
@@ -170,5 +181,8 @@ class SignInController: UIViewController, UITextFieldDelegate {
         
         facebookRegisterOutlet.layer.cornerRadius = 20
         facebookRegisterOutlet.clipsToBounds = true
+        
+        goBack.layer.cornerRadius = 20
+        goBack.clipsToBounds = true
     }
 }

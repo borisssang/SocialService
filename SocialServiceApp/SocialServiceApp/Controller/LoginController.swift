@@ -11,16 +11,15 @@ import FBSDKLoginKit
 import FBSDKShareKit
 import Firebase
 import FirebaseAuth
-import FirebaseStorage
-import FirebaseDatabase
 import SwiftyJSON
 import JGProgressHUD
-import LBTAComponents
+import FirebaseFirestore
 
 class LoginController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         firstNameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
@@ -31,9 +30,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         setUpTextFieldsAndButtons()
     }
-    
+
     var dataForm: FormData?
-    var facebookUser: UserEntity?
+    var user: UserEntity?
     
     //Outlets
     @IBOutlet var firstNameTextField: UITextField!
@@ -89,65 +88,71 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 let name = json["name"].string!
                 let password = json["id"].string!
                 let email = json["email"].string!
-                self.facebookUser = UserEntity(first: name, pas: password, email: email, phone: 0)
+                self.user = UserEntity(first: name, pas: password, email: email, phone: 0)
                 self.saveUserIntoFirebaseDatabase()
                 
                 let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc : UINavigationController = storyboard.instantiateViewController(withIdentifier: "navigation") as! UINavigationController
                 if let formVC = vc.topViewController as? FormTableController{
-                    formVC.user = self.facebookUser
+                    formVC.user = self.user
                     self.present(vc, animated: true, completion: nil)
                 }
             }
         }
     }
     
+    //storing user info into firestore
     func saveUserIntoFirebaseDatabase() {
-        
+        let db = Firestore.firestore()
         guard let uid = Auth.auth().currentUser?.uid else { dismissHud(self.hud, text: "Error", detailText: "Failed to save user.", delay: 3); return }
         
-        let dictionaryValues = ["email": facebookUser?.userEmail,
-                                "name": facebookUser?.name,
-                                "password": facebookUser?.password]
-        
-        let values = [uid : dictionaryValues]
-        
-        Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (err, ref) in
-            if let err = err {
-                self.dismissHud(self.hud, text: "Error", detailText: "Failed to save user info with error: \(err)", delay: 3)
-                return
-            }
-            print("Successfully saved user info into Firebase database")
-            // after successfull save dismiss the welcome view controller
-            
-            self.hud.dismiss(animated: true)
-            // self.dismiss(animated: true, completion: nil)
-        })
+        let dictionaryValues: [String : Any] = ["email": user?.userEmail ?? "",
+                                "name": user?.name ?? "",
+                                "password": user?.password ?? "",
+                                "phone": user?.userPhone ?? ""]
+        db.collection("users").document(uid).setData(dictionaryValues)
     }
     
-    //registering the user
+    //user presses REGISTER
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier, identifier == "showForm" {
             if let navVC = segue.destination as? UINavigationController{
                 if let vc = navVC.topViewController as? FormTableController {
+                    //validation
                     if phoneTextField.text != "" && firstNameTextField.text != "" && passwordTextField.text != "" && emailTextField.text != "" {
-                        let user = UserEntity(first: firstNameTextField.text!, pas: passwordTextField.text!, email: emailTextField.text!, phone: Int(phoneTextField.text!)!)
+                        guard (phoneTextField.text?.isNumber)! else {showAlert(message: "Please enter a valid phone number")
+                            return}
+                        guard isValidEmail(testStr: emailTextField.text!) else {showAlert(message: "Please enter a valid email address")
+                            return}
+                        //creating the user
+                        let currentUser = UserEntity(first: firstNameTextField.text!, pas: passwordTextField.text!, email: emailTextField.text!, phone: Int(phoneTextField.text!)!)
+                        self.user = currentUser
+                //registering the user into Firestore
                         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, error) in
                             guard (authResult?.user) != nil else { return }
                         }
-                        vc.user = user
+                        //KEYCHAIN NEEDED
+                        saveUserIntoFirebaseDatabase()
+                        vc.user = currentUser
                     }
                     else{
-                        showAlert()
+                        showAlert(message: "Make sure you have provided all the information required")
                     }
                 }
             }
         }
     }
+    //email verification
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
     
     //alert if some of the fields are missing
-    func showAlert(){
-        let alert = UIAlertController(title: "Oops", message: "Make sure you have provided all the information required", preferredStyle: UIAlertControllerStyle.alert)
+    func showAlert(message: String){
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:
@@ -200,3 +205,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
         facebookRegisterOutlet.clipsToBounds = true
     }
 }
+extension String  {
+    var isNumber: Bool {
+        return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+    }
+}
+

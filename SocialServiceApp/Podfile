@@ -15,5 +15,7 @@ pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'JGProgressHUD'
 pod 'LBTAComponents'
+pod 'Firebase/Core'
+pod 'Firebase/Firestore'
 
 end
