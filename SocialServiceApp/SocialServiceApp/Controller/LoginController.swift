@@ -14,8 +14,20 @@ import FirebaseAuth
 import SwiftyJSON
 import JGProgressHUD
 import FirebaseFirestore
+import JTMaterialTransition
 
 class LoginController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var alreadyHaveAnAccount: UIButton!
+    
+    @IBAction func presentSignInWindow(_ sender: UIButton) {
+        let controller = SignInController()
+        
+        controller.modalPresentationStyle = .custom
+        controller.transitioningDelegate = self.transition
+        
+        self.present(controller, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +37,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         phoneTextField.delegate = self
         
+        self.transition = JTMaterialTransition(animatedView: self.alreadyHaveAnAccount)
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         
@@ -33,6 +47,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
 
     var dataForm: FormData?
     var user: UserEntity?
+    var transition: JTMaterialTransition?
     
     //Outlets
     @IBOutlet var firstNameTextField: UITextField!
@@ -66,7 +81,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 self.dismissHud(self.hud, text: "Error", detailText: "Failed to get Facebook user with error: \(err)", delay: 3)
                 return
             }
-            
+            if result?.isCancelled == true {
+                self.dismissHud(self.hud, text: "", detailText: "", delay: 0)
+                return
+            }
+           
             //getting FACEBOOK token + credentials
             let accessToken = FBSDKAccessToken.current()
             guard let accessTokenToString = accessToken?.tokenString else {return}

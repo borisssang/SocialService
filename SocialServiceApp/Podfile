@@ -17,5 +17,5 @@ pod 'JGProgressHUD'
 pod 'LBTAComponents'
 pod 'Firebase/Core'
 pod 'Firebase/Firestore'
-
+pod 'JTMaterialTransition', '~> 2.0'
 end

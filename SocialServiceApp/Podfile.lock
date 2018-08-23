@@ -120,6 +120,7 @@ PODS:
     - gRPC-RxLibrary (= 1.14.1)
   - GTMSessionFetcher/Core (1.2.0)
   - JGProgressHUD (2.0.3)
+  - JTMaterialTransition (2.0.1)
   - LBTAComponents (1.0.2)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
@@ -141,6 +142,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - JGProgressHUD
+  - JTMaterialTransition (~> 2.0)
   - LBTAComponents
   - PCLBlurEffectAlert
   - SwiftyJSON
@@ -169,6 +171,7 @@ SPEC REPOS:
     - gRPC-RxLibrary
     - GTMSessionFetcher
     - JGProgressHUD
+    - JTMaterialTransition
     - LBTAComponents
     - leveldb-library
     - nanopb
@@ -199,6 +202,7 @@ SPEC CHECKSUMS:
   gRPC-RxLibrary: c4c826507ad3c8c8fab6887f153938eb04b86d59
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  JTMaterialTransition: 2350b44b404d1982a7ba755866cc65da452f4eec
   LBTAComponents: c4c8863e0ef6715e378300db148b96a09df656f7
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
@@ -206,6 +210,6 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 45d88635734eb7badbbfa99b14663ef53ad2c75b
+PODFILE CHECKSUM: 4c7ffcf8ea4165545757a4b31c215ad0f27eaa6f
 
 COCOAPODS: 1.5.3
