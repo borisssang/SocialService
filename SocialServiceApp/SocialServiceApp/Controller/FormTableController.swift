@@ -8,11 +8,16 @@
 
 import UIKit
 import CoreLocation
+import KeychainAccess
+import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 
 class FormTableController: UITableViewController, DescriptionDelegate, LocationDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //delegates used for getting the data from the cells
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
@@ -39,6 +44,7 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
     
     //MARK: MODEL
     var user: UserEntity?
+    let keychain = Keychain(service: "https://firebase.google.com/")
     var formImage: UIImage?{
         get {
             if let image = cameraImage.image{
@@ -55,7 +61,6 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
     }
     var formLocation: CLLocation?
     let categories = ["Streets", "Pollution", "Facilities", "Construction", "Other"]
-    
     var selectedCategory: String?
     var formDescription: String?
     
@@ -67,11 +72,10 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
     
     @IBOutlet weak var cameraInstructionLabel: UILabel!
     @IBOutlet weak var categoryPicker: UIPickerView!
-    
-    //delegation updates
     @IBOutlet weak var descriptionCell: DescriptionCell!
     @IBOutlet weak var locationCell: LocationCell!
     
+    //delegation updates
     func descriptionUpdated(text: String) {
         formDescription = text
     }
@@ -86,7 +90,6 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
     }
     
     //MARK: Actions
-    
     @IBAction func showCamera(_ sender: UIButton) {
         setImage()
     }
@@ -111,10 +114,32 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
                 destinationVC.delegate = self
             }
         } else if let destinationVC = segue.destination as? DataController {
-            guard user != nil && formAddress != nil && formImage != nil && formLocation != nil && formDescription != nil else { showAlert()
+            guard formAddress != nil && formImage != nil && formLocation != nil && formDescription != nil else { showAlert()
                 return}
-            let template = FormData(user: user!, image: formImage!, address: formAddress!, location: formLocation!, category: selectedCategory!, description: formDescription!) 
-            destinationVC.forms.append(template)
+            
+            if let userName = keychain["name"], let password = keychain["password"], let email = keychain["email"]{
+                self.user = UserEntity(first: userName, pas: password, email: email, phone: 0)
+                let template = FormData(user: user!, image: formImage!, address: formAddress!, location: formLocation!, category: selectedCategory!, description: formDescription!)
+                destinationVC.forms.append(template)
+                
+                let db = Firestore.firestore()
+                let uid = Auth.auth().currentUser?.uid
+                
+                let dictionaryValues: [String : Any] = ["user": userName,
+                                                        "address": formAddress!,
+                                                        "category": selectedCategory!,
+                                                        "description": formDescription!]
+                
+                db.collection("users").document(uid!).collection("Forms").addDocument(data: dictionaryValues){ err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
+                }
+                
+            }
+            else {return}
         }
     }
     
@@ -204,33 +229,4 @@ class ScaledHeightImageView: UIImageView {
         return CGSize(width: -1.0, height: -1.0)
     }
 }
-
-//resizing images
-//extension UIImage {
-//    func resizeImage(newSize: CGSize) -> UIImage {
-//        // Guard newSize is different
-//        guard self.size != newSize else { return self }
-//
-//        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-//        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
-//        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-//        UIGraphicsEndImageContext()
-//        return newImage
-//    }
-//
-//    func resizedImageWithinRect(rectSize: CGSize) -> UIImage {
-//        let widthFactor = size.width / rectSize.width
-//        let heightFactor = size.height / rectSize.height
-//
-//        var resizeFactor = widthFactor
-//        if size.height > size.width {
-//            resizeFactor = heightFactor
-//        }
-//
-//        let newSize = CGSize(width: size.width/resizeFactor, height: size.height/resizeFactor)
-//        let resized = resizeImage(newSize: newSize)
-//        return resized
-//    }
-//}
-
 

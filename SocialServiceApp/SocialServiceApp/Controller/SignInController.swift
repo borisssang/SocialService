@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-
 import UIKit
 import FBSDKLoginKit
 import FBSDKShareKit
@@ -17,30 +15,38 @@ import FirebaseAuth
 import SwiftyJSON
 import JGProgressHUD
 import FirebaseFirestore
+import KeychainAccess
+import RZTransitions
 
-class SignInController: UIViewController, UITextFieldDelegate {
+class SignInController: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
+    
+    @IBAction func presentSignInWindow(_ sender: UIButton) {
+        self.transitioningDelegate = RZTransitionsManager.shared()
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextViewController : LoginController = storyboard.instantiateViewController(withIdentifier: "login") as! LoginController
+        nextViewController.transitioningDelegate = RZTransitionsManager.shared()
+        self.present(nextViewController, animated:true) {}
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        RZTransitionsManager.shared().defaultPresentDismissAnimationController = RZZoomAlphaAnimationController()
         passwordTextField.delegate = self
         emailTextField.delegate = self
+        setUpTextFieldsAndButtons()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        setUpTextFieldsAndButtons()
     }
     
-    var dataForm: FormData?
     var user: UserEntity?
     
     //Outlets
-    
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet weak var registerOutlet: UIButton!
     @IBOutlet weak var facebookRegisterOutlet: UIButton!
-    
     @IBOutlet weak var goBack: UIButton!
     
     let hud: JGProgressHUD = {
@@ -93,22 +99,27 @@ class SignInController: UIViewController, UITextFieldDelegate {
                 
                 let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc : UINavigationController = storyboard.instantiateViewController(withIdentifier: "navigation") as! UINavigationController
-                if let formVC = vc.topViewController as? FormTableController{
-                    
-                    //KEYCHAIN NEEDED
-                    formVC.user = self.user
-                    self.present(vc, animated: true, completion: nil)
-                }
+                
+                self.saveUserIntoKeychain(name: name, password: password, email: email)
+                self.present(vc, animated: true, completion: nil)
             }
         }
     }
     
-    //registering the user
+    func saveUserIntoKeychain(name: String, password: String, email: String){
+        let keychain = Keychain(service: "https://firebase.google.com/")
+        keychain[name] = password
+        keychain["name"] = name
+        keychain["password"] = password
+        keychain["email"] = email
+    }
+    
+    //signing in the user
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier, identifier == "showForm" {
             if let navVC = segue.destination as? UINavigationController{
                 if let vc = navVC.topViewController as? FormTableController {
-                    if  passwordTextField.text != "" && emailTextField.text != "" {
+                    if passwordTextField.text != "" && emailTextField.text != "" {
                         guard isValidEmail(testStr: emailTextField.text!) else {showAlert(message: "Please enter a valid email address")
                             return}
                         Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (result, error) in
@@ -116,20 +127,25 @@ class SignInController: UIViewController, UITextFieldDelegate {
                                 print(error!)
                             }
                             else if let user = Auth.auth().currentUser {
-                                //TODO: get uiid + keychain
-                                //search by uiid
-                                //getting data and save it to user then pass it on
-                                //KEYCHAIN
+                                let uid = user.uid
+                                let db = Firestore.firestore()
+                                db.collection("users").document(uid).getDocument(completion: { (snapshot, error) in
+                                    
+                                    let json = JSON(snapshot!)
+                                    let name = json["name"].string!
+                                    let password = json["id"].string!
+                                    let email = json["email"].string!
+                                    self.saveUserIntoKeychain(name: name, password: password, email: email)
+                                })
                                 print(user)
                             }
                         }
-//                        let user = UserEntity(first: firstNameTextField.text!, pas: passwordTextField.text!, email: emailTextField.text!, phone: Int(phoneTextField.text!)!)
                     }
                 }
             }
         }
     }
-
+    
     //email verification
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"

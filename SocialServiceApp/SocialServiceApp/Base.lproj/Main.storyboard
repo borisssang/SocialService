@@ -341,7 +341,7 @@
         <!--Sign In Controller-->
         <scene sceneID="YsV-sc-LWN">
             <objects>
-                <viewController id="XzF-M7-PGP" customClass="SignInController" customModule="SocialServiceApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signInController" id="XzF-M7-PGP" customClass="SignInController" customModule="SocialServiceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o5S-BQ-hPU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -454,7 +454,7 @@
                                                 </attributedString>
                                             </state>
                                             <connections>
-                                                <segue destination="xqN-0e-ThM" kind="show" id="SmM-tR-661"/>
+                                                <action selector="presentSignInWindow:" destination="XzF-M7-PGP" eventType="touchUpInside" id="1RC-D4-ivm"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -496,12 +496,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76N-dM-PxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="433" y="216"/>
+            <point key="canvasLocation" x="476" y="215"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="DRC-6O-Kuo">
             <objects>
-                <viewController id="xqN-0e-ThM" customClass="LoginController" customModule="SocialServiceApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" definesPresentationContext="YES" id="xqN-0e-ThM" customClass="LoginController" customModule="SocialServiceApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Fn-Tn-HG5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -631,7 +631,7 @@
                                                 </attributedString>
                                             </state>
                                             <connections>
-                                                <action selector="presentSignInWindow:" destination="xqN-0e-ThM" eventType="touchUpInside" id="MIv-7I-Kmc"/>
+                                                <action selector="presentSignInWindow:" destination="xqN-0e-ThM" eventType="touchUpInside" id="XkC-rU-6UY"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -643,7 +643,6 @@
                         <viewLayoutGuide key="safeArea" id="chm-D7-DPk"/>
                     </view>
                     <connections>
-                        <outlet property="alreadyHaveAnAccount" destination="pbf-aX-EGo" id="JTZ-FC-neL"/>
                         <outlet property="emailTextField" destination="XCE-As-lfd" id="ZjR-RS-JPc"/>
                         <outlet property="facebookRegisterOutlet" destination="HB5-RV-Wa8" id="gLu-1v-DPz"/>
                         <outlet property="firstNameTextField" destination="mLb-Uk-pIv" id="W6b-JK-bEA"/>

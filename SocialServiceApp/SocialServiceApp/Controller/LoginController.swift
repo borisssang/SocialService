@@ -14,40 +14,35 @@ import FirebaseAuth
 import SwiftyJSON
 import JGProgressHUD
 import FirebaseFirestore
-import JTMaterialTransition
+import KeychainAccess
+import RZTransitions
 
 class LoginController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var alreadyHaveAnAccount: UIButton!
-    
     @IBAction func presentSignInWindow(_ sender: UIButton) {
-        let controller = SignInController()
-        
-        controller.modalPresentationStyle = .custom
-        controller.transitioningDelegate = self.transition
-        
-        self.present(controller, animated: true, completion: nil)
+        self.transitioningDelegate = RZTransitionsManager.shared()
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextViewController : SignInController = storyboard.instantiateViewController(withIdentifier: "signInController") as! SignInController
+        nextViewController.transitioningDelegate = RZTransitionsManager.shared()
+        self.present(nextViewController, animated:true) {}
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    RZTransitionsManager.shared().defaultPresentDismissAnimationController = RZZoomAlphaAnimationController()
+        
         firstNameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
         phoneTextField.delegate = self
-        
-        self.transition = JTMaterialTransition(animatedView: self.alreadyHaveAnAccount)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         setUpTextFieldsAndButtons()
     }
-
-    var dataForm: FormData?
+    
     var user: UserEntity?
-    var transition: JTMaterialTransition?
     
     //Outlets
     @IBOutlet var firstNameTextField: UITextField!
@@ -57,12 +52,14 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var registerOutlet: UIButton!
     @IBOutlet weak var facebookRegisterOutlet: UIButton!
     
+    //progress window
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
         hud.interactionType = .blockAllTouches
         return hud
     }()
     
+    //dismissing window
     func dismissHud(_ hud: JGProgressHUD, text: String, detailText: String, delay: TimeInterval) {
         hud.textLabel.text = text
         hud.detailTextLabel.text = detailText
@@ -85,7 +82,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 self.dismissHud(self.hud, text: "", detailText: "", delay: 0)
                 return
             }
-           
+            
             //getting FACEBOOK token + credentials
             let accessToken = FBSDKAccessToken.current()
             guard let accessTokenToString = accessToken?.tokenString else {return}
@@ -109,13 +106,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 let email = json["email"].string!
                 self.user = UserEntity(first: name, pas: password, email: email, phone: 0)
                 self.saveUserIntoFirebaseDatabase()
+                self.saveUserIntoKeychain(name: name, password: password, email: email)
                 
                 let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc : UINavigationController = storyboard.instantiateViewController(withIdentifier: "navigation") as! UINavigationController
-                if let formVC = vc.topViewController as? FormTableController{
-                    formVC.user = self.user
-                    self.present(vc, animated: true, completion: nil)
-                }
+                self.present(vc, animated: true, completion: nil)
             }
         }
     }
@@ -126,41 +121,47 @@ class LoginController: UIViewController, UITextFieldDelegate {
         guard let uid = Auth.auth().currentUser?.uid else { dismissHud(self.hud, text: "Error", detailText: "Failed to save user.", delay: 3); return }
         
         let dictionaryValues: [String : Any] = ["email": user?.userEmail ?? "",
-                                "name": user?.name ?? "",
-                                "password": user?.password ?? "",
-                                "phone": user?.userPhone ?? ""]
+                                                "name": user?.name ?? "",
+                                                "password": user?.password ?? "",
+                                                "phone": user?.userPhone ?? ""]
         db.collection("users").document(uid).setData(dictionaryValues)
+    }
+    
+    func saveUserIntoKeychain(name: String, password: String, email: String){
+        let keychain = Keychain(service: "https://firebase.google.com/")
+        keychain[name] = password
+        keychain["name"] = name
+        keychain["password"] = password
+        keychain["email"] = email
     }
     
     //user presses REGISTER
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier, identifier == "showForm" {
-            if let navVC = segue.destination as? UINavigationController{
-                if let vc = navVC.topViewController as? FormTableController {
-                    //validation
-                    if phoneTextField.text != "" && firstNameTextField.text != "" && passwordTextField.text != "" && emailTextField.text != "" {
-                        guard (phoneTextField.text?.isNumber)! else {showAlert(message: "Please enter a valid phone number")
-                            return}
-                        guard isValidEmail(testStr: emailTextField.text!) else {showAlert(message: "Please enter a valid email address")
-                            return}
-                        //creating the user
-                        let currentUser = UserEntity(first: firstNameTextField.text!, pas: passwordTextField.text!, email: emailTextField.text!, phone: Int(phoneTextField.text!)!)
-                        self.user = currentUser
-                //registering the user into Firestore
-                        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, error) in
-                            guard (authResult?.user) != nil else { return }
-                        }
-                        //KEYCHAIN NEEDED
-                        saveUserIntoFirebaseDatabase()
-                        vc.user = currentUser
+            
+                //validation
+                if phoneTextField.text != "" && firstNameTextField.text != "" && passwordTextField.text != "" && emailTextField.text != "" {
+                    guard (phoneTextField.text?.isNumber)! else {showAlert(message: "Please enter a valid phone number")
+                        return}
+                    guard isValidEmail(testStr: emailTextField.text!) else {showAlert(message: "Please enter a valid email address")
+                        return}
+                    //creating the user
+                    let currentUser = UserEntity(first: firstNameTextField.text!, pas: passwordTextField.text!, email: emailTextField.text!, phone: Int(phoneTextField.text!)!)
+                    self.user = currentUser
+                    //registering the user into Firestore
+                    Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, error) in
+                        guard (authResult?.user) != nil else { return }
                     }
-                    else{
-                        showAlert(message: "Make sure you have provided all the information required")
-                    }
+                    
+                    saveUserIntoKeychain(name: self.firstNameTextField.text!, password: self.passwordTextField.text!, email: self.emailTextField.text!)
+                    saveUserIntoFirebaseDatabase()
+                }
+                else{
+                    showAlert(message: "Make sure you have provided all the information required")
                 }
             }
         }
-    }
+    
     //email verification
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
