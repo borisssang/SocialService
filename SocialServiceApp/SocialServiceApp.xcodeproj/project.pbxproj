@@ -13,7 +13,6 @@
 		05B6CBBF2125CDAA009CE354 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6CBB52125CDA8009CE354 /* FormData.swift */; };
 		05B6CBC02125CDAA009CE354 /* FormTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6CBB62125CDA8009CE354 /* FormTableController.swift */; };
 		05B6CBC12125CDAA009CE354 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6CBB72125CDA8009CE354 /* DescriptionCell.swift */; };
-		05B6CBC22125CDAA009CE354 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05B6CBB82125CDA9009CE354 /* Info.plist */; };
 		05B6CBC32125CDAA009CE354 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6CBB92125CDA9009CE354 /* UserEntity.swift */; };
 		05B6CBC42125CDAA009CE354 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6CBBA2125CDA9009CE354 /* LocationViewController.swift */; };
 		05B6CBC52125CDAA009CE354 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B6CBBB2125CDA9009CE354 /* LocationCell.swift */; };
@@ -216,7 +215,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B6CBC22125CDAA009CE354 /* Info.plist in Resources */,
 				05B6CBD2212AFCB7009CE354 /* GoogleService-Info.plist in Resources */,
 				05B6CBCB2125CDB4009CE354 /* Assets.xcassets in Resources */,
 				05B6CBA92125CCC7009CE354 /* Main.storyboard in Resources */,

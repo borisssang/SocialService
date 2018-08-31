@@ -17,20 +17,15 @@ import FirebaseFirestore
 import KeychainAccess
 import RZTransitions
 
+//IF YOU WANT TO GET RID OF THE WARNINGS -> WRITE PROHIBIT ALL WARNINGS IN PODFILE
+
 class LoginController: UIViewController, UITextFieldDelegate {
-    
-    @IBAction func presentSignInWindow(_ sender: UIButton) {
-        self.transitioningDelegate = RZTransitionsManager.shared()
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextViewController : SignInController = storyboard.instantiateViewController(withIdentifier: "signInController") as! SignInController
-        nextViewController.transitioningDelegate = RZTransitionsManager.shared()
-        self.present(nextViewController, animated:true) {}
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     RZTransitionsManager.shared().defaultPresentDismissAnimationController = RZZoomAlphaAnimationController()
         
+         self.navigationController?.setNavigationBarHidden(true, animated: true)
         firstNameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
@@ -75,7 +70,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         FBSDKLoginManager().logIn(withReadPermissions:["email", "public_profile"], from: self) { (result, err) in
             if err != nil{
-                self.dismissHud(self.hud, text: "Error", detailText: "Failed to get Facebook user with error: \(err)", delay: 3)
+                self.dismissHud(self.hud, text: "Error", detailText: "Failed to get Facebook user with error: \(err?.localizedDescription ?? "n/a")", delay: 3)
                 return
             }
             if result?.isCancelled == true {
@@ -109,8 +104,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 self.saveUserIntoKeychain(name: name, password: password, email: email)
                 
                 let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc : UINavigationController = storyboard.instantiateViewController(withIdentifier: "navigation") as! UINavigationController
-                self.present(vc, animated: true, completion: nil)
+                let vc : FormTableController = storyboard.instantiateViewController(withIdentifier: "FormTableController") as! FormTableController
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
@@ -184,6 +179,15 @@ class LoginController: UIViewController, UITextFieldDelegate {
             }}))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func presentSignInWindow(_ sender: UIButton) {
+        self.transitioningDelegate = RZTransitionsManager.shared()
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextViewController : SignInController = storyboard.instantiateViewController(withIdentifier: "signInController") as! SignInController
+        nextViewController.transitioningDelegate = RZTransitionsManager.shared()
+        self.present(nextViewController, animated:true) {}
     }
     
     //MARK: TEXTshit

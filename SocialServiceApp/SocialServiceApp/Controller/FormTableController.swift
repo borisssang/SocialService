@@ -22,7 +22,9 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
         descriptionCell.delegate = self
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura", size: 20)!]
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.viewControllers = [self]
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura", size: 20)!]
         
         //gesture to disable the keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -48,6 +50,7 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
     var formImage: UIImage?{
         get {
             if let image = cameraImage.image{
+                
                 return image
             }
             return UIImage()

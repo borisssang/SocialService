@@ -127,6 +127,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate,MKMapV
     
     @IBAction func goBack(_ sender: UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
+        
     }
 }
 

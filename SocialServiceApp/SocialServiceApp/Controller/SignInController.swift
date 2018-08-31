@@ -21,11 +21,12 @@ import RZTransitions
 class SignInController: UIViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
     
     @IBAction func presentSignInWindow(_ sender: UIButton) {
-        self.transitioningDelegate = RZTransitionsManager.shared()
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextViewController : LoginController = storyboard.instantiateViewController(withIdentifier: "login") as! LoginController
-        nextViewController.transitioningDelegate = RZTransitionsManager.shared()
-        self.present(nextViewController, animated:true) {}
+//        self.transitioningDelegate = RZTransitionsManager.shared()
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let nextViewController : LoginController = storyboard.instantiateViewController(withIdentifier: "login") as! LoginController
+//        nextViewController.transitioningDelegate = RZTransitionsManager.shared()
+//        self.present(nextViewController, animated:true) {}
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -71,7 +72,7 @@ class SignInController: UIViewController, UITextFieldDelegate, UIViewControllerT
         
         FBSDKLoginManager().logIn(withReadPermissions:["email", "public_profile"], from: self) { (result, err) in
             if err != nil{
-                self.dismissHud(self.hud, text: "Error", detailText: "Failed to get Facebook user with error: \(err)", delay: 3)
+                self.dismissHud(self.hud, text: "Error", detailText: "Failed to get Facebook user with error: \(String(describing: err))", delay: 3)
                 return
             }
             
