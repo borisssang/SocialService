@@ -52,7 +52,7 @@ class DescriptionCell: UITableViewCell, UITextViewDelegate {
         //create left side empty space so that done button set on right side
         let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
         
-        let doneBtn: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(self.doneButtonAction))
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.doneButtonAction))
         toolbar.setItems([flexSpace, doneBtn], animated: false)
         toolbar.barTintColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0.7435787671)
         self.toolbar = toolbar

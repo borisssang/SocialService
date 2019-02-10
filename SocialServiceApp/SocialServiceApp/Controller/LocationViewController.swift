@@ -27,7 +27,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate,MKMapV
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Futura", size: 20)!]
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -51,7 +51,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate,MKMapV
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
             
             self.coordinate = locValue
-            let span = MKCoordinateSpanMake(0.01, 0.01)
+            let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
             let region = MKCoordinateRegion(center: locValue, span: span)
             mapView.setRegion(region, animated: true)
             anotationSet = true

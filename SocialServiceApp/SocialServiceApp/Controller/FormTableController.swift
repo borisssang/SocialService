@@ -151,7 +151,7 @@ class FormTableController: UITableViewController, DescriptionDelegate, LocationD
     }
     
     func showAlert(){
-        let alert = UIAlertController(title: "Oops", message: "Make sure you have added a photo, address and description", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Oops", message: "Make sure you have added a photo, address and description", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:
@@ -209,7 +209,7 @@ extension FormTableController: UIPickerViewDataSource, UIPickerViewDelegate{
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let category = categories[row]
-        let myTitle = NSAttributedString(string: category, attributes: [NSAttributedStringKey.font: UIFont(name: "Futura", size: 15.0)!])
+        let myTitle = NSAttributedString(string: category, attributes: [NSAttributedString.Key.font: UIFont(name: "Futura", size: 15.0)!])
         return myTitle
     }
 }

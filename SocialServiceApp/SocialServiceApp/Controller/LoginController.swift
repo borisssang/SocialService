@@ -167,7 +167,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     //alert if some of the fields are missing
     func showAlert(message: String){
-        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:

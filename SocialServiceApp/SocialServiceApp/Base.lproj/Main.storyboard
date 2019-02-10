@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IZ1-dv-jtX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IZ1-dv-jtX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70u-Jx-Nlj" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3590" y="-453"/>
+            <point key="canvasLocation" x="3590" y="-443"/>
         </scene>
         <!--Form Table Controller-->
         <scene sceneID="Ggh-KI-wQw">
@@ -99,14 +98,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W6u-Rs-KAR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="229" height="170"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="229" height="169.5"/>
                                                     <color key="backgroundColor" red="0.75086595030000003" green="1" blue="0.85544494530000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" image="YES" updatesFrequently="YES"/>
                                                     </accessibility>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6un-s8-BvZ">
-                                                    <rect key="frame" x="156" y="55" width="62" height="61"/>
+                                                    <rect key="frame" x="156.5" y="54.5" width="62" height="61"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="61" id="D5T-tZ-LKP"/>
                                                         <constraint firstAttribute="width" constant="62" id="hYu-gy-0Y9"/>
@@ -151,7 +150,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekh-hT-zbh">
-                                                    <rect key="frame" x="172" y="45" width="53" height="56"/>
+                                                    <rect key="frame" x="172" y="46" width="53" height="56"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="53" id="I48-EY-rJq"/>
                                                         <constraint firstAttribute="height" constant="56" id="xLI-bE-3Ja"/>
@@ -660,7 +659,7 @@
     </scenes>
     <resources>
         <image name="Image" width="407" height="408"/>
-        <image name="wallpaper" width="920" height="920"/>
+        <image name="wallpaper" width="220.80000305175781" height="220.80000305175781"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UIz-Qd-VeY"/>
