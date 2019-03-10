@@ -2,9 +2,9 @@
 //  ViewController.swift
 //  userLocation
 //
-//  Created by Sebastian Hette on 19.09.2016.
-//  Copyright © 2016 MAGNUMIUM. All rights reserved.
-//
+//  Created by Boris Angelov on 7.08.18.
+//  Copyright © 2018 Melon. All rights reserved.
+
 
 import UIKit
 import MapKit

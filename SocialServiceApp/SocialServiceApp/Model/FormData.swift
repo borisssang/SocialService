@@ -27,4 +27,10 @@ class FormData {
         formCategory = category
         formDescription = description
     }
+    
+    public func getLocation() -> CLLocation? {
+    return formLocation
+    }
+    
+    
 }
