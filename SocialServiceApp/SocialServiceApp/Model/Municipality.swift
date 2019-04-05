@@ -13,6 +13,7 @@ class Municipality{
     
     private var name: String?
     private var location: CLLocationCoordinate2D?
+    private var forms: [FormData]?
     
     init(name: String, location: CLLocationCoordinate2D){
             self.name = name
@@ -23,9 +24,8 @@ class Municipality{
         return location
     }
     
-    //TODO: send form to the municipality
     func sendForm(form: FormData){
-        
+    self.forms?.append(form)
     }
 }
 
@@ -47,11 +47,10 @@ extension CLLocationCoordinate2D {
                     liesInside = !liesInside
                 }
             }
-            
             i += 1
             j = i+1
         }
-        
+
         return liesInside
     }
 }

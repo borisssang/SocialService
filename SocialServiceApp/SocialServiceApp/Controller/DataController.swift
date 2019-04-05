@@ -8,6 +8,10 @@
 
 import UIKit
 import CoreLocation
+import Firebase
+import FirebaseFirestore
+import FirebaseAuth
+
 class DataController: UIViewController {
 
     override func viewDidLoad() {
@@ -22,6 +26,7 @@ class DataController: UIViewController {
         Municipality(name: "Blagoevgrad", location: CLLocationCoordinate2D.init()),
         Municipality(name: "Varna", location: CLLocationCoordinate2D.init())
     ]
+    
     var forms = [FormData]()
     {
         didSet{
@@ -42,9 +47,10 @@ class DataController: UIViewController {
     
      //send signal to the corresponding municipality
     func sendSignal(for form: FormData){
-        
+
         //location of the user
         guard let location = form.getLocation() else {return}
+        
         let location2D = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude:location.coordinate.longitude)
         
         //going through the municipalities's locations
